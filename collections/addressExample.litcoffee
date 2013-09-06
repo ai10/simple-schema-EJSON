@@ -33,7 +33,7 @@ Example for simple-schema
         new Address value.city, value.state
 
 
-      @person =
+      @personA =
         name: "Chris Mather"
 
         createdAt: new Date()
@@ -42,7 +42,7 @@ Example for simple-schema
 
         address: new Address("San Francisco", "CA")
 
-      @person2 =
+      @personB =
         name: "Chuck Short"
 
         createdAt: new Date()
@@ -72,15 +72,15 @@ Example for simple-schema
         Meteor.subscribe "people"
         Meteor.subscribe "people2"
         Meteor.startup ()->
-          People.insert person2
-          People2.insert person2
+          People.insert personB
+          People2.insert personB
 
       if (Meteor.isServer)
         Meteor.publish "people", ()->
-          @added "people", Meteor.uuid(), person
+          @added "people", Meteor.uuid(), personA
           @ready()
         Meteor.publish "people2", ()->
-          @added "people2", Meteor.uuid(), person
+          @added "people2", Meteor.uuid(), personA
           @ready()
 
 
